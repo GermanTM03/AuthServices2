@@ -1,6 +1,6 @@
 import type IUser from '@/interfaces/IUser'
 
-const API_URL = '//URL'
+const API_URL = 'https://u2-fake-api-users.onrender.com'
 
 
 

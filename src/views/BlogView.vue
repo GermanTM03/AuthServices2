@@ -14,6 +14,7 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.group }}</td>
+          <td>{{ user.password }}</td>
         </tr>
       </tbody>
     </table>
@@ -52,3 +53,26 @@ onMounted(async () => {
   text-align: left;
 }
 </style>
+
+
+<!-- import bcrypt from 'bcryptjs';
+
+async function loginUser() {
+  try {
+    const user = await UserService.GetEmail(email.value);
+
+    if (user) {
+      const passwordMatch = await bcrypt.compare(password.value, user.password);
+
+      if (passwordMatch) {
+        console.log('Usuario autenticado:', user);
+      } else {
+        console.error('Credenciales inválidas');
+      }
+    } else {
+      console.error('Usuario no encontrado');
+    }
+  } catch (error) {
+    console.error('No se pudo iniciar sesión:', error);
+  }
+} -->
