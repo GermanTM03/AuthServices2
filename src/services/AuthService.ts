@@ -19,18 +19,27 @@ export default {
   },
 
  
-  async GetEmail(email: string): Promise<IUser | null> {
+  async  GetEmail(email: string, password: string): Promise<IUser | null> {
     try {
-      const response = await fetch(`${API_URL}/User?email=${email}`)
+      const response = await fetch(`${API_URL}/Login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+  
       if (!response.ok) {
-        throw new Error('No se pudieron recuperar los datos del usuario')
+        throw new Error('No se pudieron recuperar los datos del usuario');
       }
-      return await response.json()
+  
+      return await response.json();
     } catch (error) {
-      console.error(error)
-      return null
+      console.error(error);
+      return null;
     }
-  },
+  }
+  ,
 
         
   async registerUser(name: string, email: string, password: string, group: string): Promise<void> {
