@@ -18,29 +18,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import UserService from '@/services/AuthService'
-import bcrypt from 'bcryptjs'
 
 let email = ref('')
 let password = ref('')
 
 async function loginUser() {
-  try {
-    const user = await UserService.GetEmail(email.value, password.value);
-
-    if (user && user.password) { // Verificar que user y user.password estén definidos
-      const passwordMatch = await bcrypt.compare(password.value, user.password);
-
-      if (passwordMatch) {
-        console.log('Usuario autenticado:', user);
-      } else {
-        console.error('Credenciales inválidas');
-      }
-    } else {
-      console.error('Usuario no encontrado o contraseña no válida');
-    }
-  } catch (error) {
-    console.error('No se pudo iniciar sesión:', error);
+try{
+  const user = await UserService.GetEmail(email.value,password.value)
+  if(user){
+    console.log('Usuario Autenticado;',user);
+  }else{
+    console.error('Credemciales invalidas');
   }
+}catch(error){
+  console.error('No se pudo iniciar sesion;',error)
+}
+
+
 }
 
 </script>
